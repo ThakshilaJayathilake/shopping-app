@@ -1,6 +1,7 @@
 package com.tnj.microservices.product.service;
 
 import com.tnj.microservices.product.dto.ProductRequest;
+import com.tnj.microservices.product.dto.ProductResponse;
 import com.tnj.microservices.product.model.Product;
 import com.tnj.microservices.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 public class ProductService {
     private final ProductRepository productRepository;
 
-    public Product createProduct(ProductRequest productRequest) {
+    public ProductResponse createProduct(ProductRequest productRequest) {
         Product product = Product.builder()
                 .name(productRequest.name())
                 .description(productRequest.description())
@@ -25,6 +26,13 @@ public class ProductService {
         productRepository.save(product);
 //        log.info("Product" + product.getId() + " is saved");
         log.info("Product {} is saved", product.getId());
-        return product;
+        return new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice());
+    }
+
+    public List<ProductResponse> getAllProducts() {
+        return productRepository.findAll()
+                .stream()
+                .map(product -> new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice()))
+                .toList();
     }
 }

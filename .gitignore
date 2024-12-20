@@ -1,0 +1,12 @@
+# Ignore all OS and editor-specific files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Ignore IDE configurations
+.idea/
+.vscode/
+
+# Ignore Docker-generated files
+docker/mysql/data/

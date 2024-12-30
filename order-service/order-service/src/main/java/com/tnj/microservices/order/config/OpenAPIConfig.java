@@ -1,4 +1,4 @@
-package com.tnj.microservices.order.cnofig;
+package com.tnj.microservices.order.config;
 
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.info.Info;
